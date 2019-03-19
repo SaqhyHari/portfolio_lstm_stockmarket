@@ -1,13 +1,13 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 import quandl
+import os
 quandl.ApiConfig.api_key = 'EpVb5SE59swkaGuHM_yN'
 f = open("predict_input.txt", "r")
-comp=f.readline()
-while comp!=None:
+comp=f.readline().rstrip()
+
+while comp:
 	trainingSet = quandl.get(comp, start_date="2014-12-31", end_date="2017-12-31")
-	#trainingSet = pd.read_csv('/home/hari/Downloads/RNN-StockPricePrediction-master/Google_Stock_Price_Train.csv')
 	trainingSet = trainingSet.iloc[:,1:2].values
 
 	#Feature Scaling
@@ -39,7 +39,7 @@ while comp!=None:
 	#Compiling the RNN
 	model.compile(optimizer='adam', loss = 'mean_squared_error')
 	#Fitting the model
-	model.fit(x =xTrain , y =yTrain , batch_size=8, epochs=300)
+	model.fit(x =xTrain , y =yTrain , batch_size=128, epochs=100)
 	model.save_weights('TrainedRNN.h5')
 
 	#Test Set
@@ -53,14 +53,19 @@ while comp!=None:
 
 	#now the predicted output is scaled, we will apply the reverse transform method to get the actual predicted prices
 	prediction = sc.inverse_transform(prediction)
-	print("Predicted Close value is : %s",prediction[len(prediction)-1])
 	#Visualization the results
-	plt.plot(realStockPrice, color = 'black', label='RealPrice')
-	plt.plot(prediction, color = 'red', label='Predicted')
+	print(realStockPrice,prediction)
+	import matplotlib.pyplot as plt
+	plt.plot(realStockPrice, color = 'green', label='RealPrice')
+	plt.plot(prediction, color = 'blue', label='Predicted')
 	plt.xlabel('days')
 	plt.ylabel('Price')
 	plt.title('Predictied Output')
 	plt.legend()
 	plt.savefig(comp+".jpg")
-	comp=f.readline()
+	plt.close()
+	comp=f.readline().rstrip()
+
+	
 f.close()
+print("Prediction Ended...")

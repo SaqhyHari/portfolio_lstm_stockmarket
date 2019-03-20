@@ -5,7 +5,6 @@
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<style>
 input[type=text], select {
   width: 100%;
@@ -25,8 +24,6 @@ input[type=password], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
-
 div {
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -63,8 +60,7 @@ a:hover {
 /* selected link */
 a:active {
   color: white;
-}</style>
-	
+}</style>	
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -74,7 +70,7 @@ a:active {
 	
 	<div class="limiter">
 	
-	<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+	<div class="container-login100" style="background-image: url('https://pixelz.cc/wp-content/uploads/2018/08/stock-market-electronic-chart-bullish-uhd-4k-wallpaper.jpg');">
 			
 		<div class="wrap-login100">
 		

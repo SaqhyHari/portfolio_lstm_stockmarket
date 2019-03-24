@@ -97,7 +97,7 @@ if(isset($_POST["submit"])){
 $myfile = fopen("loginData1.txt", "r") or die("Unable to open file!");
 echo fread($myfile,filesize("loginData1.txt"));
 fclose($myfile);
-?>	</pre></p>
+?>	It is adviced to invest in these companies</pre></p>
     </div>
     <div class="w3-third w3-center">
       <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
@@ -112,14 +112,14 @@ fclose($myfile);
       <h1>Graph</h1>
       <div class="w3-content w3-display-container"><br>
   <?php
-$files = glob("NSE/*.*");
+$files = glob("NSE/*.jpg");
 for ($i = 0; $i < count($files); $i++) {
     $image = $files[$i];
     echo '<img src="' . $image . '" class="myslides"alt="Random image" />' . "<br /><br />";
 }
 ?>
-  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+  <!--<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button> -->
+  <!--<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>-->
 </div>
 </div>
 </div>

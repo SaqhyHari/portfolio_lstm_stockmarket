@@ -6,8 +6,10 @@ import numpy as np
 from scipy.optimize import minimize
 import os
 os.remove("predict_input.txt")
+os.remove("loginData1.txt")
 f = open("loginData.txt", "r")
 f1 = open("predict_input.txt", "a")
+f2= open("loginData1.txt", "a")
 investment=f.readline().rstrip()
 sect=f.readline().rstrip()
 while sect:
@@ -50,10 +52,10 @@ while sect:
 		ax.annotate(symbol, (risk_v[i], return_v[i]))
 	plt.savefig("NSE/"+sect+".jpg")
 	f1.write("NSE/%s\n"%(s))	
+	f2.write("NSE/%s\n"%(s))	
 	sect=f.readline().rstrip()
 f.close()
 f1.close()
-print('Portfolio Optimization Ended...')
-import predic
+f2.close()
 os.system('python predic.py')
-print("Prediction called")
+print("Execution completed")

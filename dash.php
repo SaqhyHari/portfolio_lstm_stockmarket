@@ -115,6 +115,8 @@ fclose($myfile);
 $files = glob("NSE/*.jpg");
 for ($i = 0; $i < count($files); $i++) {
     $image = $files[$i];
+	echo basename($image) . "<br />"; 
+
     echo '<img src="' . $image . '" class="myslides"alt="Random image" />' . "<br /><br />";
 }
 ?>

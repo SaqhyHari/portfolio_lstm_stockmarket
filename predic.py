@@ -23,7 +23,7 @@ while comp:
 	model.add(LSTM(units = 4, activation = 'sigmoid', input_shape=(None, 1)))
 	model.add(Dense(units=1))
 	model.compile(optimizer='adam', loss = 'mean_squared_error')
-	model.fit(x =xTrain , y =yTrain , batch_size=600, epochs=10, verbose=0)
+	model.fit(x =xTrain , y =yTrain , batch_size=64, epochs=400, verbose=0)
 	model.save_weights('TrainedRNN.h5')
 	testSet = quandl.get(comp)
 	realStockPrice = testSet.iloc[:, 1:2].values
@@ -32,13 +32,19 @@ while comp:
 	inputs = np.reshape(inputs, (len(inputs),1,1))
 	prediction = model.predict(inputs)
 	prediction = sc.inverse_transform(prediction)
+	x1=realStockPrice[-365:,-365:]
+	y1=prediction[-365:,-365:]
+	#print(len(x1),len(y1))
+	#print(len(realStockPrice),len(prediction))
 	import matplotlib.pyplot as plt
 	import matplotlib.ticker as ticker
-	plt.plot(realStockPrice, color = 'green', label='RealPrice')
-	plt.plot(prediction, color = 'blue', label='Predicted')
+	#plt.plot(realStockPrice, color = 'green', label='RealPrice')
+	#plt.plot(prediction, color = 'blue', label='Predicted')
+	plt.plot(x1, color = 'green', label='RealPrice')
+	plt.plot(y1, color = 'blue', label='Predicted')
 	plt.xlabel('days')
-	plt.ylabel('Price')
-	plt.title('Predictied Output')
+	plt.ylabel('Price in Rupees')
+	plt.title('Predicted Output')
 	plt.legend()
 	plt.savefig(comp+".jpg")
 	plt.close()

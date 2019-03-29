@@ -41,7 +41,7 @@ while sect:
 	return_v = get_return(prices)
 	fig, ax = plt.subplots()
 	ax.scatter(x=risk_v, y=return_v, alpha=0.5)
-	ax.set(title='Return and Risk', xlabel='Risk', ylabel='Return')
+	ax.set(title='Return and Risk', xlabel='Risk', ylabel='Return in %')
 	min=1000
 	index=0
 	for i, symbol in enumerate(symbols):
